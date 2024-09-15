@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const router = useRouter();
+  const pathname = usePathname();
 
   return (
     <nav className="bg-gray-100 dark:bg-gray-800 p-4 shadow-md">
@@ -12,13 +12,13 @@ export default function Navbar() {
         <div className="flex space-x-4">
           <Link
             href="/"
-            className={`px-3 py-2 rounded-md text-sm font-medium ${router.pathname === "/" ? "bg-blue-500 text-white" : "text-black dark:text-white"}`}
+            className={`px-3 py-2 rounded-md text-sm font-medium ${pathname === "/" ? "bg-blue-500 text-white" : "text-black dark:text-white"}`}
           >
             انتخاب تسهیلات
           </Link>
           <Link
             href="/loans"
-            className={`px-3 py-2 rounded-md text-sm font-medium ${router.pathname === "/loans" ? "bg-blue-500 text-white" : "text-black dark:text-white"}`}
+            className={`px-3 py-2 rounded-md text-sm font-medium ${pathname === "/loans" ? "bg-blue-500 text-white" : "text-black dark:text-white"}`}
           >
             مشاهده تسهیلات
           </Link>
