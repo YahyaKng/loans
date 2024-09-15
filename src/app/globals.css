@@ -1,0 +1,29 @@
+@import "./fonts/Yekan-Bakh/yekan-bakh.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+:root {
+  font-family: "Yekan Bakh", Tahoma, Arial;
+}
+/* 
+:root {
+  --background: #ffffff;
+  --foreground: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #fff;
+    --foreground: #fff;
+  }
+} */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
