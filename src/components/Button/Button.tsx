@@ -46,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
               d="M4 12a8 8 0 018-8V4a10 10 0 00-10 10h2z"
             ></path>
           </svg>
-          Loading...
+          ...
         </span>
       ) : (
         children
