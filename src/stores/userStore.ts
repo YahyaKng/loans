@@ -1,19 +1,16 @@
+import { UserBankData } from "@/types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface UserState {
   personalData: {
-    firstName: string;
+    name: string;
     lastName: string;
     nationalCode: string;
     birthDate: string;
     mobileNumber: string;
   };
-  bankData: {
-    accountNumber: string;
-    shebaNumber: string;
-    annualBalance: string;
-  };
+  bankData: UserBankData;
   setPersonalData: (data: Partial<UserState["personalData"]>) => void;
   setBankData: (data: Partial<UserState["bankData"]>) => void;
 }
@@ -22,7 +19,7 @@ export const useUserStore = create<UserState>()(
   persist(
     (set) => ({
       personalData: {
-        firstName: "",
+        name: "",
         lastName: "",
         nationalCode: "",
         birthDate: "",
@@ -30,8 +27,8 @@ export const useUserStore = create<UserState>()(
       },
       bankData: {
         accountNumber: "",
-        shebaNumber: "",
-        annualBalance: "",
+        iban: "",
+        annualAverageBalance: "",
       },
       setPersonalData: (data) =>
         set((state) => ({

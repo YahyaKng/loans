@@ -1,11 +1,5 @@
+import { StepsProps } from "@/types";
 import React from "react";
-
-interface StepsProps {
-  steps: string[];
-  currentStep: number;
-  activeColor?: string;
-  inactiveColor?: string;
-}
 
 const Steps: React.FC<StepsProps> = ({
   steps,

@@ -3,13 +3,7 @@ import Typography from "../Typography/Typography";
 import { useLoanStore } from "@/stores/loanStore";
 import { loanData } from "@/data/loans";
 
-interface RepaymentTypeFormProps {
-  onFormValid: (isValid: boolean) => void;
-}
-
-const RepaymentTypeForm: React.FC<RepaymentTypeFormProps> = ({
-  onFormValid,
-}) => {
+const RepaymentTypeForm: React.FC = () => {
   const {
     selectedLoanId,
     repaymentType,

@@ -8,11 +8,11 @@ import LoanOptions from "@/components/LoanOptions/LoanOptions";
 import RepaymentTypeForm from "@/components/RepaymentTypeForm/RepaymentTypeForm";
 import Steps from "@/components/Steps/Steps";
 import Typography from "@/components/Typography/Typography";
-import UserBankDataForm from "@/components/UserDataForm/UserbankDataForm";
 import UserDataForm from "@/components/UserDataForm/UserDataForm";
 import Message from "@/components/Message/Message";
 import { loanData } from "@/data/loans";
-import { Submission } from "@/types";
+import { Submission, UserBankData, UserPersonalData } from "@/types";
+import UserBankDataForm from "@/components/UserDataForm/UserbankDataForm";
 
 export default function Home() {
   const addSubmission = useLoanStore((state) => state.addSubmission);
@@ -92,7 +92,7 @@ export default function Home() {
               فرم اطلاعات کاربر
             </Typography>
             <UserDataForm
-              onFormValid={(isValid: boolean, data) => {
+              onFormValid={(isValid: boolean, data: UserPersonalData) => {
                 if (isValid) {
                   setIsFormValid(true);
                   setPersonalData(data);
@@ -108,7 +108,7 @@ export default function Home() {
               فرم اطلاعات حساب
             </Typography>
             <UserBankDataForm
-              onFormValid={(isValid, data) => {
+              onFormValid={(isValid: boolean, data: UserBankData) => {
                 if (isValid) {
                   setIsBankFormValid(true);
                   setBankData(data);

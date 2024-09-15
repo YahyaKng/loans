@@ -12,7 +12,7 @@ type TypographyTag =
   | "label"
   | "div";
 
-interface TypographyProps {
+interface BaseTypographyProps {
   tag?: TypographyTag;
   size?:
     | "xs"
@@ -36,7 +36,15 @@ interface TypographyProps {
   color?: string;
   className?: string;
   children: React.ReactNode;
+  htmlFor?: string;
 }
+
+interface LabelTypographyProps extends BaseTypographyProps {
+  tag: "label";
+  htmlFor: string;
+}
+
+type TypographyProps = BaseTypographyProps | LabelTypographyProps;
 
 const defaultStyles: Record<TypographyTag, { size: string; weight: string }> = {
   h1: { size: "4xl", weight: "extrabold" },
@@ -48,6 +56,7 @@ const defaultStyles: Record<TypographyTag, { size: string; weight: string }> = {
   p: { size: "base", weight: "normal" },
   span: { size: "base", weight: "normal" },
   div: { size: "base", weight: "normal" },
+  label: { size: "base", weight: "normal" },
 };
 
 const Typography: React.FC<TypographyProps> = ({
@@ -57,6 +66,7 @@ const Typography: React.FC<TypographyProps> = ({
   color = "text-black",
   className = "",
   children,
+  htmlFor,
   ...props
 }) => {
   const Tag = tag as keyof JSX.IntrinsicElements;
@@ -66,8 +76,14 @@ const Typography: React.FC<TypographyProps> = ({
 
   const baseStyles = `text-${defaultSize} font-${defaultWeight} ${color}`;
 
+  const isLabel = tag === "label";
+
   return (
-    <Tag className={`${baseStyles} ${className}`} {...props}>
+    <Tag
+      className={`${baseStyles} ${className}`}
+      {...(isLabel ? { htmlFor } : {})}
+      {...props}
+    >
       {children}
     </Tag>
   );

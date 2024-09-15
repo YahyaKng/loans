@@ -17,7 +17,7 @@ export interface LoanOption {
 export interface Submission {
   loan: LoanOption | null;
   userData: UserData;
-  bankData: BankData;
+  bankData: UserBankData;
   repaymentType: number;
   penaltyFee: number;
   installmentAmount: number;
@@ -28,6 +28,38 @@ export interface UserData {
   nationalCode: string;
 }
 
-export interface BankData {
+export interface StepsProps {
+  steps: string[];
+  currentStep: number;
+  activeColor?: string;
+  inactiveColor?: string;
+}
+
+export interface ButtonProps
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "type"> {
+  loading?: boolean;
+  disabled?: boolean;
+  type?: "primary" | "secondary" | "tertiary";
+}
+
+export interface UserBankData {
   accountNumber: string;
+  iban: string;
+  annualAverageBalance: string;
+}
+
+export interface UserPersonalData {
+  name: string;
+  lastName: string;
+  nationalCode: string;
+  birthDate: string;
+  mobileNumber: string;
+}
+
+export interface UserDataFormProps {
+  onFormValid: (isValid: boolean, data: UserPersonalData) => void;
+}
+
+export interface UserBankDataFormProps {
+  onFormValid: (isValid: boolean, data: UserBankData) => void;
 }

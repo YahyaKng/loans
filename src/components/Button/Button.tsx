@@ -1,10 +1,5 @@
+import { ButtonProps } from "@/types";
 import React from "react";
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  loading?: boolean;
-  disabled?: boolean;
-  type?: "primary" | "secondary" | "tertiary";
-}
 
 const Button: React.FC<ButtonProps> = ({
   loading,

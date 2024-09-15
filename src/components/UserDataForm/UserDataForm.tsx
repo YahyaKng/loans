@@ -6,10 +6,9 @@ import {
   isValidPersianName,
   isValidShamsiDate,
 } from "@/utils/functions";
+import { UserDataFormProps } from "@/types";
 
-const UserDataForm: React.FC<{ onFormValid: (isValid: boolean) => void }> = ({
-  onFormValid,
-}) => {
+const UserDataForm: React.FC<UserDataFormProps> = ({ onFormValid }) => {
   const { personalData, setPersonalData } = useUserStore((state) => ({
     personalData: state.personalData,
     setPersonalData: state.setPersonalData,
@@ -25,10 +24,10 @@ const UserDataForm: React.FC<{ onFormValid: (isValid: boolean) => void }> = ({
   const validateForm = () => {
     const newErrors: Partial<typeof formData> = {};
 
-    if (!formData.firstName) newErrors.firstName = "نام الزامی است";
+    if (!formData.name) newErrors.name = "نام الزامی است";
     if (!formData.lastName) newErrors.lastName = "نام خانوادگی الزامی است";
-    if (!formData.firstName.trim() || !isValidPersianName(formData.firstName)) {
-      newErrors.firstName = "نام باید شامل حروف فارسی باشد";
+    if (!formData.name.trim() || !isValidPersianName(formData.name)) {
+      newErrors.name = "نام باید شامل حروف فارسی باشد";
     }
     if (!formData.lastName.trim() || !isValidPersianName(formData.lastName)) {
       newErrors.lastName = "نام خانوادگی باید شامل حروف فارسی باشد";
@@ -57,7 +56,7 @@ const UserDataForm: React.FC<{ onFormValid: (isValid: boolean) => void }> = ({
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       const isValid = validateForm();
-      onFormValid(isValid);
+      onFormValid(isValid, formData);
 
       if (isValid) {
         setPersonalData(formData);
@@ -92,23 +91,23 @@ const UserDataForm: React.FC<{ onFormValid: (isValid: boolean) => void }> = ({
           tag="label"
           size="base"
           weight="semibold"
-          htmlFor="firstName"
+          htmlFor="name"
           className="text-light-black"
         >
           نام
         </Typography>
         <input
-          id="firstName"
-          name="firstName"
+          id="name"
+          name="name"
           type="text"
-          value={formData.firstName}
+          value={formData.name}
           onChange={handleChange}
           className="p-3 border border-light-gray rounded-md focus:ring-light-primary focus:border-light-primary"
           placeholder="نام"
         />
-        {errors.firstName && (
+        {errors.name && (
           <Typography tag="p" className="text-red-500 text-sm">
-            {errors.firstName}
+            {errors.name}
           </Typography>
         )}
       </div>

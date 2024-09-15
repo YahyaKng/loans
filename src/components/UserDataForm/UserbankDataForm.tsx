@@ -9,7 +9,7 @@ interface UserBankData {
 }
 
 interface UserBankDataFormProps {
-  onFormValid: (isValid: boolean) => void;
+  onFormValid: (isValid: boolean, data: UserBankData) => void;
 }
 
 const UserBankDataForm: React.FC<UserBankDataFormProps> = ({ onFormValid }) => {
@@ -50,7 +50,7 @@ const UserBankDataForm: React.FC<UserBankDataFormProps> = ({ onFormValid }) => {
 
       setErrors(newErrors);
       const isValid = Object.keys(newErrors).length === 0;
-      onFormValid(isValid);
+      onFormValid(isValid, formData);
 
       if (isValid) {
         setBankData(formData);
